@@ -53,6 +53,20 @@ describe "restaurant edit form" do
 end
 
 
+describe "deleting restaurants" do
+
+	before{Restaurant.create name: "KFC"}
+
+		it "can delete a restaurant" do
+			visit '/restaurants'
+			expect(page).to have_content 'Delete KFC'
+			click_link 'Delete KFC'
+			expect(page).not_to have_content 'KFC'
+		end
+
+end
+
+
 
 
 
