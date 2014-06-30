@@ -11,4 +11,16 @@ describe "restaurants listing page" do
 
 	end
 
+	context "are restaurants" do
+
+		before do
+			Restaurant.create(name:'Ledbury')
+		end
+
+		it "should show the restaurant" do
+			visit '/restaurants'
+			expect(page).to have_content 'Ledbury'
+		end
+	end
+
 end
