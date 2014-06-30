@@ -47,7 +47,7 @@ describe "restaurant edit form" do
 
 		fill_in 'Name', with: 'Kentucky Fried Chicken'
 
-		click_link 'Update Restaurant'
+		click_button 'Update Restaurant'
 		expect(page).to have_content 'Kentucky Fried Chicken'
 	end
 end
