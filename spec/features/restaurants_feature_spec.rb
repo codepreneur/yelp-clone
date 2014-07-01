@@ -30,16 +30,17 @@ describe "restaurant creation form" do
 		visit '/restaurants/new'
 
 		fill_in 'Name', with: 'Burger King'
+		fill_in 'Cuisine', with: 'Fast Food'
 		click_button 'Create Restaurant'
 
 		expect(current_path).to eq '/restaurants'
-		expect(page).to have_content 'Burger King'
+		expect(page).to have_content 'Burger King (Fast Food)'
 	end
 end
 
-describe "restaurant edit form" do
+describe "restaurant editing and deleting" do
 
-	before {Restaurant.create name: 'KFC'}
+	before {Restaurant.create name: 'KFC', cuisine: 'Chicken'}
 
 	it "should be able to edit a restaurant" do
 		visit '/restaurants'
@@ -48,26 +49,18 @@ describe "restaurant edit form" do
 		fill_in 'Name', with: 'Kentucky Fried Chicken'
 
 		click_button 'Update Restaurant'
+		expect(current_path).to eq '/restaurants'
+
 		expect(page).to have_content 'Kentucky Fried Chicken'
 	end
+
+	it "can delete restaurants" do
+		visit '/restaurants'
+		click_link 'Delete KFC'
+		expect(page).not_to have_content 'KFC (Chicken)'
+		expect(page).to have_content 'Successfully deleted KFC'
+	end
 end
-
-
-describe "deleting restaurants" do
-
-	before{Restaurant.create name: "KFC"}
-
-		it "can delete a restaurant" do
-			visit '/restaurants'
-			expect(page).to have_content 'Delete KFC'
-			click_link 'Delete KFC'
-			expect(page).not_to have_content 'KFC'
-		end
-
-end
-
-
-
 
 
 
