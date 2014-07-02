@@ -1,6 +1,6 @@
 class Restaurant < ActiveRecord::Base
-	validates :name, presence: true
-	validates :cuisine, presence: true
+	validates :name, presence: true, format: {with: /\A[A-Z]/}
+	validates :cuisine, presence: true, length: {minimum: 3}
 	has_many :reviews
 
 	def average_rating
