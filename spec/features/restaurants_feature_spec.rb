@@ -14,7 +14,7 @@ describe "restaurants listing page" do
 	context "are restaurants" do
 
 		before do
-			Restaurant.create(name:'Ledbury')
+			Restaurant.create(name:'Ledbury', cuisine: 'French')
 		end
 
 		it "should show the restaurant" do
@@ -46,10 +46,10 @@ describe "restaurant creation form" do
 			fill_in 'Name', with: 'Burger King'
 			fill_in 'Cuisine', with: 'ff'
 			click_button 'Create Restaurant'
-			
+
 			expect(current_path).to eq '/restaurants'
-			expect(page).to have_content 'errors'
-			expect(page).not_to have_content 'Burger King (ff)'
+			expect(page).not_to have_content 'burger king (ff)'
+			expect(page).to have_content 'Errors'
 		end
 	end
 
