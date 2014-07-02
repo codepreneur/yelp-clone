@@ -1,4 +1,6 @@
 class Restaurant < ActiveRecord::Base
+	validates :name, presence: true
+	validates :cuisine, presence: true
 	has_many :reviews
 
 	def average_rating
