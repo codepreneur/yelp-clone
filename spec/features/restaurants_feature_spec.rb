@@ -96,7 +96,7 @@ describe "restaurant editing and deleting" do
 		before do
       user = User.create email: 's@s.com', password: '12345678', password_confirmation: '12345678'
       login_as user
-    end
+    end 
 
 		it "should be able to edit a restaurant" do
 			visit '/restaurants'
